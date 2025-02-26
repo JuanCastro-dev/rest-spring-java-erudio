@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import static io.github.juandev.restspringjavaerudio.utils.MathUtils.convertToDouble;
+import static io.github.juandev.restspringjavaerudio.utils.MathUtils.isNumeric;
+
 @RestController
 public class MathController {
 
@@ -56,24 +59,5 @@ public class MathController {
             throw new UnsuportedMathOperationException("Please set a numeric value");
         }
         return Math.sqrt(convertToDouble(number));
-    }
-
-    private Double convertToDouble(String number) {
-        if (number == null || number.isEmpty()) {
-            return 0D;
-        }
-        String num = number.replaceAll(",", ".");
-        if (isNumeric(num)) {
-            return Double.parseDouble(num);
-        }
-        return 0D;
-    }
-
-    private boolean isNumeric(String number) {
-        if (number == null || number.isEmpty()) {
-            return false;
-        }
-        String num = number.replaceAll(",", ".");
-        return num.matches("-?\\d+(\\.\\d+)?");
     }
 }
