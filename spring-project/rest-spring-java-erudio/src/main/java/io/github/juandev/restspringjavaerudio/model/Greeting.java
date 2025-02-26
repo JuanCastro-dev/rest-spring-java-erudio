@@ -1,4 +1,4 @@
-package io.github.juandev.restspringjavaerudio;
+package io.github.juandev.restspringjavaerudio.model;
 
 public class Greeting {
 
