@@ -1,5 +1,6 @@
-package io.github.juandev.restspringjavaerudio;
+package io.github.juandev.restspringjavaerudio.controller;
 
+import io.github.juandev.restspringjavaerudio.model.Greeting;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
