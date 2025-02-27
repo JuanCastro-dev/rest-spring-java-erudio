@@ -1,5 +1,8 @@
 package io.github.juandev.restspringjavaerudio.exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 import java.io.Serializable;
 import java.util.Date;
 

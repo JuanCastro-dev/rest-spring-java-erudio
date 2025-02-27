@@ -1,6 +1,9 @@
 package io.github.juandev.restspringjavaerudio.services;
 
+import io.github.juandev.restspringjavaerudio.exception.ResourceNotFoundException;
 import io.github.juandev.restspringjavaerudio.model.Person;
+import io.github.juandev.restspringjavaerudio.repository.PersonRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,38 +14,19 @@ import java.util.logging.Logger;
 @Service
 public class PersonServices {
 
-    private final AtomicLong counter = new AtomicLong();
     private Logger logger = Logger.getLogger(PersonServices.class.getName());
+    @Autowired
+    private PersonRepository repository;
 
     public Person findById(Long id) {
-
         logger.info("Finding one person");
-        Person person = new Person();
-        person.setId(counter.incrementAndGet());
-        person.setFirstName("John");
-        person.setLastName("Smith");
-        person.setAddress("Uberland");
-        person.setGender("Male");
-        return person ;
+        return repository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("No record found with id: " + id)
+        ) ;
     }
 
     public List<Person> findAll() {
-        logger.info("Finding all persons");
-        List<Person> persons = new ArrayList<Person>();
-        for (int i = 0; i < 10; i++) {
-            Person person = mockPerson(i);
-            persons.add(person);
-        }
-        return persons;
+        return repository.findAll();
     }
 
-    private Person mockPerson(int i) {
-        Person person = new Person();
-        person.setId(counter.incrementAndGet());
-        person.setFirstName("Person name " + i);
-        person.setLastName("Last name " + i);
-        person.setAddress("Brasil");
-        person.setGender("Male");
-        return person;
-    }
 }
