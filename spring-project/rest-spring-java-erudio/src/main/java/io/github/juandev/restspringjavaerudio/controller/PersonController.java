@@ -1,6 +1,7 @@
 package io.github.juandev.restspringjavaerudio.controller;
 
 import io.github.juandev.restspringjavaerudio.model.Person;
+import io.github.juandev.restspringjavaerudio.model.PersonVO;
 import io.github.juandev.restspringjavaerudio.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,12 +21,12 @@ public class PersonController {
     private PersonServices service = new PersonServices();
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person findById(@PathVariable Long id) {
+    public PersonVO findById(@PathVariable Long id) {
         return service.findById(id);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Person> findAll() {
+    public List<PersonVO> findAll() {
         return service.findAll();
     }
 
